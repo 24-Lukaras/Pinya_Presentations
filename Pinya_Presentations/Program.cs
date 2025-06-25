@@ -1,7 +1,17 @@
+using Pinya_Presentations.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddScoped<LoggedUserProvider>();
+builder.Services.AddTransient<FieldsService>();
+builder.Services.AddScoped<FieldItemsProvider>();
+builder.Services.AddAuthentication().AddCookie(auth =>
+{
+    auth.ExpireTimeSpan = TimeSpan.FromMinutes(5);
+});
 
 var app = builder.Build();
 
@@ -17,6 +27,7 @@ app.UseHttpsRedirection();
 app.UseRouting();
 
 app.UseAuthorization();
+app.UseAuthentication();
 
 app.MapStaticAssets();
 

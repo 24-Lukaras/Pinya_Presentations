@@ -1,8 +1,19 @@
-﻿@{
+﻿@inject LoggedUserProvider userProvider;
+@{
     ViewData["Title"] = "Home Page";
+    var user = userProvider.GetUser();
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+@if (user is null)
+{
+    <a class="btn btn-primary" href="/Home/Login">Login page</a>
+}
+else
+{
+    <div class="text-center">
+        <h1 class="display-4">Welcome @(user.Name)</h1>
+        <form asp-controller="Home" asp-action="Logout">
+            <button class="btn btn-primary" type="submit">Logout</button>
+        </form>
+    </div>
+}

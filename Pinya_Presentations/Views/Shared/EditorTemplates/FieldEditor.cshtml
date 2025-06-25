@@ -1,0 +1,7 @@
+﻿@model int?
+@inject FieldItemsProvider fieldsCache
+@{
+    var type = (FieldType)(ViewData["type"] ?? 0);
+    var items = await fieldsCache.GetFields(type);
+}
+@Html.DropDownListFor(x => x, items, "- Select option -", new { @class = "form-control" })

@@ -1,0 +1,12 @@
+﻿@model LoginViewModel
+@{
+    ViewData["Title"] = "Login";
+}
+<div style="display: flex; justify-content: center; align-items: center;">
+    <form method="post" asp-action="Login" asp-controller="Home">
+        <label asp-for="Username">Username</label>
+        <input asp-for="Username" class="form-control" />
+        @Html.ValidationMessageFor(x => x.Username)
+        <button class="btn btn-primary" type="submit">Login</button>
+    </form>
+</div>

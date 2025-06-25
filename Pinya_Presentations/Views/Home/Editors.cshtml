@@ -1,0 +1,7 @@
+﻿@model TestingModel
+@Html.LabelFor(x => x.CountryId)
+@Html.EditorFor(x => x.CountryId, new { type = FieldType.Country })
+@Html.LabelFor(x => x.CompanyId)
+@Html.EditorFor(x => x.CompanyId, new { type = FieldType.Company })
+@Html.LabelFor(x => x.DepartmentId)
+@Html.EditorFor(x => x.DepartmentId, new { type = FieldType.Department })
