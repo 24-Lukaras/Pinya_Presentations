@@ -1,0 +1,22 @@
+﻿@model SendEmailsModel
+@{
+    ViewData["Title"] = "Send Emails Page";
+}
+
+<div class="text-center">
+    <form asp-controller="Home" asp-action="SendEmail" id="send-email-form">
+        @Html.HiddenFor(x => x.UseChannels)
+        <a onclick="sendEmail(false)" class="btn btn-primary">Send Synchronously</a>
+        <a onclick="sendEmail(true)" class="btn btn-primary">Send via Channel</a>
+    </form>
+</div>
+
+<script>
+
+    function sendEmail(channel)
+    {
+        $("#@(nameof(Model.UseChannels))").val(channel);
+        $("#send-email-form").submit();
+    }
+
+</script>
