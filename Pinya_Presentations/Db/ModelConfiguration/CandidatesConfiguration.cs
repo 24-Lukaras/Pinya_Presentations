@@ -8,6 +8,7 @@ internal class CandidatesConfiguration : IEntityTypeConfiguration<Candidate>
     public void Configure(EntityTypeBuilder<Candidate> builder)
     {
         builder.HasKey(x => x.Id);
-        builder.Ignore(x => x.Name);
+
+        builder.HasPersonalName(x => x.Name);        
     }
 }

@@ -25,6 +25,7 @@ public class Database : DbContext
     {
         modelBuilder.ApplyConfiguration(new EmployeesConfiguration());
         modelBuilder.ApplyConfiguration(new EmployeeFamilyMembersConfiguration());
+        modelBuilder.ApplyConfiguration(new CandidatesConfiguration());
 
         base.OnModelCreating(modelBuilder);
     }

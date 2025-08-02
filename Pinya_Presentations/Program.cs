@@ -5,7 +5,9 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+builder.Services.AddDbContext<Database>();
 builder.Services.Configure<DatabaseOptions>(builder.Configuration);
+builder.Services.AddHostedService<CustomEmployeeSeeding>();
 
 var app = builder.Build();
 

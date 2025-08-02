@@ -9,7 +9,7 @@ internal class EmployeeFamilyMembersConfiguration : IEntityTypeConfiguration<Emp
     {
         builder.HasKey(x => x.Id);
 
-        builder.Ignore(x => x.Name);
+        builder.HasPersonalName(x => x.Name);
 
         builder.HasOne(x => x.Employee)
             .WithMany(x => x.EmployeeFamilyMembers)
