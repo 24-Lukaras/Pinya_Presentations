@@ -1,7 +1,11 @@
+using Pinya_Presentations.Db;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.Configure<DatabaseOptions>(builder.Configuration);
 
 var app = builder.Build();
 
