@@ -11,4 +11,17 @@ public class MigDb : DbContext
     public MigDb(DbContextOptions options) : base(options)
     {        
     }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        base.OnModelCreating(modelBuilder);
+
+        modelBuilder.Entity<Employee>(e =>
+        {
+            e.OwnsMany(x => x.Milestones, milestone =>
+            {
+                milestone.ToTable("Milestones");
+            });
+        });
+    }
 }
