@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using Pinya_Presentations.Db;
 using Pinya_Presentations.Models;
 
 namespace Pinya_Presentations.Controllers
@@ -7,14 +8,17 @@ namespace Pinya_Presentations.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly MigDb _db;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, MigDb db)
         {
             _logger = logger;
+            _db = db;
         }
 
         public IActionResult Index()
         {
+            _db.Employees.FirstOrDefault();
             return View();
         }
 
