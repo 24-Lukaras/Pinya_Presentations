@@ -1,0 +1,7 @@
+﻿@model LoginModel
+
+<form asp-controller="Home" asp-action="Login" method="post" style="display: flex; flex-direction: column; gap: 5px; max-width: 400px; margin: 0 auto;">
+        @Html.LabelFor(x => x.Username)
+        @Html.EditorFor(x => x.Username)
+        <button class="btn btn-primary" type="submit">Login</button>
+</form>
