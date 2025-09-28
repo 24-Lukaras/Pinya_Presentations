@@ -1,0 +1,26 @@
+﻿@using Pinya_Presentations.Hubs
+
+<div id="stocks">
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/9.0.6/signalr.min.js"></script>
+<script>
+
+    const connection = new signalR.HubConnectionBuilder()
+        .withUrl("/StocksHub")
+        .configureLogging(signalR.LogLevel.Information)
+        .build();
+
+    connection.on("@(StocksHub.STOCKS_UPDATED_EVENT)", (stocks) => {
+
+        $("#stocks").empty();
+        $("#stocks").append("<table><tr><td><b>Company</b></td><td><b>Value</b></td></tr>" +
+            Object.keys(stocks).map(x => "<tr><td>" + x + "</td><td>" + stocks[x] + "</td></tr>").join("") +
+            "</table>");
+        console.log(stocks);
+    });
+    
+
+    connection.start();
+
+</script>

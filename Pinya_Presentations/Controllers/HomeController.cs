@@ -23,6 +23,11 @@ namespace Pinya_Presentations.Controllers
             return View();
         }
 
+        public IActionResult Stocks()
+        {
+            return View();
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
