@@ -1,0 +1,8 @@
+﻿@model Guid?
+@using Pinya_Presentations.Db.Repositories
+@inject CategoriesRepository _repository
+@{
+    var items = await _repository.GetAllAsync();
+    var dropDownItems = items.Select(x => new SelectListItem(x.Title, x.Id.ToString())).ToList();
+}
+@Html.DropDownListFor(x => x, dropDownItems)
