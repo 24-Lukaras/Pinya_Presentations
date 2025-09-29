@@ -14,6 +14,9 @@ builder.Services.AddDbContext<Database>(options =>
 builder.Services.AddScoped<CategoriesRepository>();
 builder.Services.AddScoped<CategoriesScopedCache>();
 builder.Services.AddResponseCaching();
+builder.Services.AddMemoryCache();
+builder.Services.AddScoped<ProductsRepository>();
+builder.Services.AddScoped<ProductsCache>();
 
 var app = builder.Build();
 

@@ -9,13 +9,13 @@ namespace Pinya_Presentations.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly Database _db;
+        private readonly ProductsRepository _products;
         private readonly CategoriesRepository _categories;
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(Database db, CategoriesRepository categories, ILogger<HomeController> logger)
+        public HomeController(ProductsRepository products, CategoriesRepository categories, ILogger<HomeController> logger)
         {
-            _db = db;
+            _products = products;
             _categories = categories;
             _logger = logger;
         }
@@ -30,9 +30,15 @@ namespace Pinya_Presentations.Controllers
             return View();
         }
 
+        public async Task<IActionResult> Products()
+        {
+            var products = await _products.GetAllAsync();
+            return View(products);
+        }
         public async Task<IActionResult> Product()
         {
-            var product = await _db.Products.FirstOrDefaultAsync();
+            var products = await _products.GetAllAsync();
+            var product = products.FirstOrDefault();
 
             if (product is null)
                 return Redirect("/");

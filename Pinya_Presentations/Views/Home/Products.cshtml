@@ -1,0 +1,16 @@
+﻿@using Pinya_Presentations.Db.Entities
+@model IEnumerable<Product>
+
+<table>
+    <tr>
+        <td><b>Id</b></td>
+        <td><b>Title</b></td>
+    </tr>
+    @foreach (var row in Model)
+    {
+        <tr>
+            <td>@(row.Id)</td>
+            <td>@(row.Title)</td>
+        </tr>
+    }
+</table>
