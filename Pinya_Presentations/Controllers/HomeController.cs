@@ -23,6 +23,13 @@ namespace Pinya_Presentations.Controllers
             return View();
         }
 
+        [ResponseCache(Duration = 3, Location = ResponseCacheLocation.Any)]
+        public IActionResult OutputCache()
+        {
+            var model = Guid.NewGuid();
+            return View(model);
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
