@@ -32,7 +32,8 @@ namespace EventSourcingData.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     MeetingId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Event = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CreatedAtUtc = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    CreatedAtUtc = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Author = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {

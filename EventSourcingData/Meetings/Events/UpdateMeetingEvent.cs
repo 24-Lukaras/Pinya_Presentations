@@ -1,6 +1,6 @@
 ﻿namespace EventSourcingData.Meetings;
 
-public class UpdateMeetingEvent
+public class UpdateMeetingEvent : MeetingEventBase
 {
     public string Title { get; }
     public string Description { get; }
@@ -10,7 +10,7 @@ public class UpdateMeetingEvent
         Description = description;
     }
 
-    public void Apply(Meeting meeting)
+    public override void Apply(Meeting meeting)
     {
         meeting.Title = Title;
         meeting.Description = Description;

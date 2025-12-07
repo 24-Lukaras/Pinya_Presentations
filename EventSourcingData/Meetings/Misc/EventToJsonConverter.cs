@@ -3,7 +3,7 @@ using System.Text.Json;
 
 namespace EventSourcingData.Meetings;
 
-internal class EventToJsonConverter : ValueConverter<IMeetingEvent, string>
+internal class EventToJsonConverter : ValueConverter<MeetingEventBase, string>
 {
     public EventToJsonConverter() : base(
         @event => ToJson(@event),
@@ -12,6 +12,6 @@ internal class EventToJsonConverter : ValueConverter<IMeetingEvent, string>
     {
     }
 
-    private static string ToJson(IMeetingEvent @event) => JsonSerializer.Serialize(@event);
-    private static IMeetingEvent FromJson(string json) => JsonSerializer.Deserialize<IMeetingEvent>(json)!;
+    private static string ToJson(MeetingEventBase @event) => JsonSerializer.Serialize(@event);
+    private static MeetingEventBase FromJson(string json) => JsonSerializer.Deserialize<MeetingEventBase>(json)!;
 }

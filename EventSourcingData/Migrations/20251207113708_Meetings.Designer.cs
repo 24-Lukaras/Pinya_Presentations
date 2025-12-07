@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EventSourcingData.Migrations
 {
     [DbContext(typeof(ManagementDbContext))]
-    [Migration("20251206205305_Meetings")]
+    [Migration("20251207113708_Meetings")]
     partial class Meetings
     {
         /// <inheritdoc />
@@ -52,6 +52,10 @@ namespace EventSourcingData.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Author")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreatedAtUtc")
                         .HasColumnType("datetime2");

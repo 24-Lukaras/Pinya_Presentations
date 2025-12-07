@@ -1,6 +1,6 @@
 ﻿namespace EventSourcingData.Meetings;
 
-public class CreateMeetingEvent : IMeetingEvent
+public class CreateMeetingEvent : MeetingEventBase
 {
     public string Title { get; }
     public CreateMeetingEvent(string title)
@@ -8,7 +8,7 @@ public class CreateMeetingEvent : IMeetingEvent
         Title = title;
     }
 
-    public void Apply(Meeting meeting)
+    public override void Apply(Meeting meeting)
     {
         meeting.Title = Title;
     }

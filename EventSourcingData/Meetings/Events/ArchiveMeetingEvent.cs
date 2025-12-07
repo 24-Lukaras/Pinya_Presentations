@@ -1,8 +1,8 @@
 ﻿namespace EventSourcingData.Meetings;
 
-public class ArchiveMeetingEvent : IMeetingEvent
+public class ArchiveMeetingEvent : MeetingEventBase
 {
-    public void Apply(Meeting meeting)
+    public override void Apply(Meeting meeting)
     {
         meeting.Status = MeetingStatus.Archived;
     }
