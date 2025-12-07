@@ -1,0 +1,12 @@
+﻿@model IEnumerable<GridMeetingModel>
+
+<a href="/Meetings/Create">Přidat</a>
+<hr />
+<table>
+@foreach (var meeting in Model)
+{
+    <tr>
+        <td><a href="/Meetings/Edit/@(meeting.Id)">@(meeting.Title)</a></td>
+    </tr>
+}
+</table>

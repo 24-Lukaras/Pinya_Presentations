@@ -1,0 +1,81 @@
+﻿@model DetailMeetingModel
+
+<h3>Info</h3>
+@if (Model.Editable) {
+    <form asp-controller="Meetings" asp-action="Edit" method="post" style="margin-bottom: 20px;">
+        @Html.HiddenFor(x => x.Id)
+        @Html.LabelFor(x => x.Title)
+        @Html.EditorFor(x => x.Title)
+        <br />
+        @Html.LabelFor(x => x.Description)
+        @Html.TextAreaFor(x => x.Description)
+        <br />
+        <button type="submit">Update</button>
+    </form>
+}
+else
+{
+    @Html.LabelFor(x => x.Title)
+    <br />
+    <span style="margin-left: 10px;">@Html.DisplayFor(x => x.Title)</span>
+    <br />
+    @Html.LabelFor(x => x.Description)
+    <br />
+    <span style="margin-left: 10px;">@Html.DisplayFor(x => x.Description)</span>
+}
+
+<h3>Notes</h3>
+<ul>
+    @foreach (var note in Model.Notes)
+    {
+        <li>@(note)</li>
+    }
+</ul>
+@if (Model.Editable)
+{
+    <form asp-controller="Meetings" asp-action="AddNote" method="post" style="margin-bottom: 20px;">
+        @Html.Hidden("MeetingId", Model.Id)
+        @Html.Label("Note", "Note")
+        @Html.TextBox("Note")
+        <button type="submit">Add note</button>
+    </form>
+}
+
+@if (Model.Editable)
+{
+    <form action="/Meetings/Archive/@(Model.Id)" method="post" style="margin-bottom: 20px;">
+        <button type="submit">Archive</button>
+    </form>
+}
+
+
+<h3>History</h3>
+<table id="events-table">
+    <tr>
+        <td><b>Akce</b></td>
+        <td><b>Autor</b></td>
+        <td><b>Datum</b></td>
+    </tr>
+    @foreach (var _event in Model.Events)
+    {
+        <tr>
+            <td>@(_event.EventName)</td>
+            <td>@(_event.Author)</td>
+            <td>@(_event.CreatedAt.ToLocalTime().ToString("dd.MM.yyyy HH:mm"))</td>
+        </tr>        
+    }
+</table>
+
+<style>
+    #events-table {
+        border-collapse: collapse;
+    }
+
+    #events-table td {
+        padding: 5px 10px;
+    }
+
+    #events-table tr {
+        border-bottom: 1px solid black;
+    }
+</style>

@@ -13,8 +13,8 @@ public class Meeting
     public IEnumerable<MeetingNote> Notes => NotesInternal;
     public IEnumerable<MeetingEvent> Events => EventsInternal;
 
-    internal ICollection<MeetingNote> NotesInternal { get; private set; } = new HashSet<MeetingNote>();
-    internal ICollection<MeetingEvent> EventsInternal { get; private set; } = new HashSet<MeetingEvent>();
+    public ICollection<MeetingNote> NotesInternal { get; private set; } = new HashSet<MeetingNote>();
+    public ICollection<MeetingEvent> EventsInternal { get; private set; } = new HashSet<MeetingEvent>();
 
 
     private Meeting(Guid id, string title, string description, MeetingStatus status)

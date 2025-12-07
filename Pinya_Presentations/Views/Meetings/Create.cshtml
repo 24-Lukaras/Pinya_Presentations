@@ -1,0 +1,8 @@
+﻿@model CreateMeetingModel
+
+<form asp-controller="Meetings" asp-action="Create" method="post">
+
+    @Html.LabelFor(x => x.Title)
+    @Html.EditorFor(x => x.Title)
+    <button type="submit">Create</button>
+</form>

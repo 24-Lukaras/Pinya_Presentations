@@ -1,5 +1,6 @@
 ﻿
 using EventSourcingData.Services;
+using Microsoft.EntityFrameworkCore;
 
 namespace EventSourcingData.Meetings;
 
@@ -21,7 +22,6 @@ internal class MeetingsRepository : IMeetingsRepository
         @event.Apply(meeting);
         var eventEntry = new MeetingEvent(meeting.Id, @event, _userProvider.Username);
         _db.Meetings_Events.Add(eventEntry);
-        _db.Meetings_Projection.Update(meeting);
         await _db.SaveChangesAsync();
         return meeting;
     }
@@ -35,10 +35,9 @@ internal class MeetingsRepository : IMeetingsRepository
         return meeting;
     }
 
-    public Task<IReadOnlyList<Meeting>> GetAllAsync()
-    {
-        throw new NotImplementedException();
-    }
+    public async Task<IReadOnlyList<Meeting>> GetAllAsync() => await _db.Meetings_Projection.ToListAsync();
 
-    public ValueTask<Meeting?> GetByIdAsync(Guid id) => _db.Meetings_Projection.FindAsync(id);
+    public Task<Meeting?> GetByIdAsync(Guid id) => _db.Meetings_Projection.FirstOrDefaultAsync(x => x.Id == id);
+
+    public async Task<IReadOnlyList<MeetingEvent>> GetEventsAsync(Guid id) => await _db.Meetings_Events.Where(x => x.MeetingId == id).OrderByDescending(x => x.CreatedAtUtc).ToListAsync();
 }

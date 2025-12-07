@@ -24,6 +24,8 @@ internal class ManagementDbContext : DbContext
             e.OwnsMany(x => x.NotesInternal, y =>
             {
                 y.HasKey(x => x.Id);
+                y.Property(x => x.Id)
+                .ValueGeneratedNever();
                 y.WithOwner().HasForeignKey("MeetingId");
                 y.ToTable(nameof(Meeting.Notes));
             });

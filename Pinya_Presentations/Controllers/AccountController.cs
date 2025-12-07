@@ -21,4 +21,10 @@ public sealed class AccountController : Controller
         await HttpContext.SignInAsync(claimsPrincipal);
         return Redirect("/");
     }
+
+    public async Task<ActionResult> Logout()
+    {
+        await HttpContext.SignOutAsync();
+        return Redirect("/login");
+    }
 }
