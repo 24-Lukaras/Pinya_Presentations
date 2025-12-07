@@ -1,4 +1,8 @@
 using EventSourcingData;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authorization.Infrastructure;
+using System.Security.Claims;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -6,6 +10,17 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 var connectionString = builder.Configuration.GetConnectionString("Default");
 builder.Services.AddDb(connectionString!);
+builder.Services.AddAuthorization(opt =>
+{
+    opt.DefaultPolicy = new AuthorizationPolicy([new ClaimsAuthorizationRequirement(ClaimTypes.Name, null)], [CookieAuthenticationDefaults.AuthenticationScheme]);
+});
+builder.Services.AddAuthentication().AddCookie(opt =>
+{
+    opt.LoginPath = "/login";
+    opt.LogoutPath = "/logout";
+    opt.ExpireTimeSpan = TimeSpan.FromHours(1);
+    opt.SlidingExpiration = true;
+});
 
 var app = builder.Build();
 
@@ -22,12 +37,33 @@ app.UseRouting();
 
 app.UseAuthorization();
 
+app.UseAuthentication();
+app.UseAuthorization();
+
 app.MapStaticAssets();
 
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}")
-    .WithStaticAssets();
+    .WithStaticAssets()
+    .RequireAuthorization();
 
+app.MapControllerRoute(
+    name: "login",
+    pattern: "login",
+    defaults: new {
+        controller = "Account",
+        action = "Login"
+    })
+    .AllowAnonymous();
+app.MapControllerRoute(
+    name: "logout",
+    pattern: "logout",
+    defaults: new
+    {
+        controller = "Account",
+        action = "Logout"
+    })
+    .AllowAnonymous();
 
 app.Run();

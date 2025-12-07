@@ -1,0 +1,8 @@
+﻿@model LoginModel
+
+<form action="login" method="post">
+
+    @Html.LabelFor(x => x.Username)
+    @Html.EditorFor(x => x.Username)
+    <button type="submit">Login</button>
+</form>
