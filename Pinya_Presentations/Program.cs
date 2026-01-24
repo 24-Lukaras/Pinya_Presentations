@@ -18,7 +18,6 @@ builder.Services.AddAuthentication(options =>
     options.ResponseType = "code";
     options.SaveTokens = true;
 });
-IdentityModelEventSource.ShowPII = true;
 
 var app = builder.Build();
 
