@@ -1,9 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.36105.23 d17.13
+VisualStudioVersion = 17.13.36105.23
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pinya_Presentations", "Pinya_Presentations\Pinya_Presentations.csproj", "{C7C9326B-3878-4F6E-894F-BD50134652D4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pinya_Presentations.IdentityProvider", "Pinya_Presentations.IdentityProvider\Pinya_Presentations.IdentityProvider.csproj", "{AC43E3DB-A8BD-4071-AE65-2870DA69BED2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pinya_Presentations.HR", "Pinya_Presentations.HR\Pinya_Presentations.HR.csproj", "{ADEA5FC7-A3B5-4310-8A32-99F2E94346CE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pinya_Presentations.BackOffice", "Pinya_Presentations.BackOffice\Pinya_Presentations.BackOffice.csproj", "{E9302F17-6138-4BD9-9F7B-C05E2C56450A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +21,18 @@ Global
 		{C7C9326B-3878-4F6E-894F-BD50134652D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C7C9326B-3878-4F6E-894F-BD50134652D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C7C9326B-3878-4F6E-894F-BD50134652D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC43E3DB-A8BD-4071-AE65-2870DA69BED2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC43E3DB-A8BD-4071-AE65-2870DA69BED2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC43E3DB-A8BD-4071-AE65-2870DA69BED2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC43E3DB-A8BD-4071-AE65-2870DA69BED2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ADEA5FC7-A3B5-4310-8A32-99F2E94346CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADEA5FC7-A3B5-4310-8A32-99F2E94346CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADEA5FC7-A3B5-4310-8A32-99F2E94346CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADEA5FC7-A3B5-4310-8A32-99F2E94346CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E9302F17-6138-4BD9-9F7B-C05E2C56450A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E9302F17-6138-4BD9-9F7B-C05E2C56450A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E9302F17-6138-4BD9-9F7B-C05E2C56450A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E9302F17-6138-4BD9-9F7B-C05E2C56450A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

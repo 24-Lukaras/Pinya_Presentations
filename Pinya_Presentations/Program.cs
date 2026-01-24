@@ -1,7 +1,24 @@
+using Microsoft.IdentityModel.Logging;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultScheme = "Cookies";
+    options.DefaultChallengeScheme = "oidc";
+})
+.AddCookie("Cookies")
+.AddOpenIdConnect("oidc", options =>
+{
+    options.Authority = "https://localhost:7296";
+    options.ClientId = "portal";
+    options.ClientSecret = "secret0";
+    options.ResponseType = "code";
+    options.SaveTokens = true;
+});
+IdentityModelEventSource.ShowPII = true;
 
 var app = builder.Build();
 
@@ -16,6 +33,7 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapStaticAssets();
@@ -23,7 +41,8 @@ app.MapStaticAssets();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}")
-    .WithStaticAssets();
+    .WithStaticAssets()
+    .RequireAuthorization();
 
 
 app.Run();

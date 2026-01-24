@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="8.0.23" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Reference Include="Kendo.Mvc">
       <HintPath>..\..\..\..\..\..\Resources\DLL\KendoUI_core_23\Kendo.Mvc.dll</HintPath>
     </Reference>

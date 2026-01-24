@@ -1,0 +1,13 @@
+﻿@model LoginViewModel
+@{
+}
+
+<form method="post" action="/login?client_id=@(Context.Request.Query["client_id"])&redirect_uri=@(Context.Request.Query["redirect_uri"])&state=@(Context.Request.Query["state"])&nonce=@(Context.Request.Query["nonce"])">
+    @Html.LabelFor(x => x.Username)
+    @Html.EditorFor(x => x.Username)
+    <br />
+    @Html.LabelFor(x => x.Password)
+    @Html.PasswordFor(x => x.Password)
+    <br />
+    <button type="submit">Login</button>
+</form>
