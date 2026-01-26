@@ -1,0 +1,35 @@
+﻿@using Pinya_Presentations.Domain
+@model IEnumerable<Order>
+
+<a href="/Orders/Complete">Completed orders</a>
+<br />
+
+<table>
+    <tr>
+        <td><b>Company</b></td>
+        <td><b>Items</b></td>
+        <td><b>Complete</b></td>
+    </tr>
+    @foreach (var row in Model)
+    {
+        <tr>
+            <td>@(row.Company)</td>
+            <td>@(string.Join("; ", row.Items.Select(x => $"{x.Name}: {x.Amount}")))</td>
+            <td><button onclick="completeOrder('@(row.Id)')">Complete</button></td>
+        </tr>
+    }
+</table>
+
+<script>
+
+    function completeOrder(id)
+    {
+        $.ajax({
+            type: "POST",
+            url: "/Orders/Complete/" + id,
+            success: () => location.reload(),
+            fail: () => console.log("error")
+        });
+    }
+
+</script>

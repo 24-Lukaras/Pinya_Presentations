@@ -1,0 +1,20 @@
+﻿@using Pinya_Presentations.Domain
+@model IEnumerable<Order>
+
+<a href="/Orders">Active orders</a>
+<br />
+<table>
+    <tr>
+        <td><b>Company</b></td>
+        <td><b>Items</b></td>
+        <td><b>Completed at</b></td>
+    </tr>
+    @foreach (var row in Model)
+    {
+        <tr>
+            <td>@(row.Company)</td>
+            <td>@(string.Join("; ", row.Items.Select(x => $"{x.Name}: {x.Amount}")))</td>
+            <td>@(row.CompletedAtUtc?.ToString("dd.MM.yyyy HH:mm"))</td>
+        </tr>
+    }
+</table>

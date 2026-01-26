@@ -1,7 +1,14 @@
+using Pinya_Presentations.Modules.Orders;
+using Pinya_Presentations.Modules.Orders.Shared;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddScoped<OrdersRepository>();
+builder.Services.AddScoped<CompleteOrder>();
+builder.Services.AddScoped<GetActiveOrders>();
+builder.Services.AddScoped<GetCompletedOrders>();
 
 var app = builder.Build();
 
