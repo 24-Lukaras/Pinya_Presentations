@@ -1,36 +1,27 @@
-﻿using MediatR;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Pinya_Presentations.Modules.Orders;
 
 namespace Pinya_Presentations.Controllers;
 
 public class OrdersController : Controller
 {
-    private readonly IMediator _mediator;
-    public OrdersController(IMediator mediator)
+    public IActionResult Index([FromServices] GetActiveOrders handler)
     {
-        _mediator = mediator;
-    }
-
-    public async Task<IActionResult> Index()
-    {
-        var query = new GetActiveOrdersQuery();
-        var orders = await _mediator.Send(query);
+        var orders = handler.Get();
         return View(orders);
     }
 
-    public async Task<IActionResult> Complete()
+    public IActionResult Complete([FromServices] GetCompletedOrders handler)
     {
-        var query = new GetCompletedOrderQuery();
-        var orders = await _mediator.Send(query);
+        var orders = handler.Get();
         return View(orders.OrderByDescending(x => x.CompletedAtUtc));
     }
 
     [HttpPost]
-    public async Task<IActionResult> Complete(Guid id)
+    public IActionResult Complete(Guid id, [FromServices] CompleteOrder handler)
     {
         var command = new CompleteOrderCommand(id);
-        var result = await _mediator.Send(command);
+        var result = handler.Handle(command);
         return result ? Ok() : BadRequest();
     }
 }

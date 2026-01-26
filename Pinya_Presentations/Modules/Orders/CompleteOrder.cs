@@ -1,10 +1,9 @@
-﻿using MediatR;
-using Pinya_Presentations.Domain;
+﻿using Pinya_Presentations.Domain;
 using Pinya_Presentations.Modules.Orders.Shared;
 
 namespace Pinya_Presentations.Modules.Orders;
 
-public class CompleteOrder : IRequestHandler<CompleteOrderCommand, bool>
+public class CompleteOrder
 {
     private readonly OrdersRepository _repo;
     public CompleteOrder(OrdersRepository repo)
@@ -25,8 +24,6 @@ public class CompleteOrder : IRequestHandler<CompleteOrderCommand, bool>
         _repo.Save();
         return true;
     }
-
-    public Task<bool> Handle(CompleteOrderCommand request, CancellationToken cancellationToken) => Task.FromResult(Handle(request));
 }
 
-public record CompleteOrderCommand(Guid Id) : IRequest<bool>;
+public record CompleteOrderCommand(Guid Id);
