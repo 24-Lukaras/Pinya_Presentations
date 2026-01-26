@@ -1,38 +1,36 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using MediatR;
+using Microsoft.AspNetCore.Mvc;
 using Pinya_Presentations.Modules.Orders;
 
-namespace Pinya_Presentations.Controllers
+namespace Pinya_Presentations.Controllers;
+
+public class OrdersController : Controller
 {
-    public class OrdersController : Controller
+    private readonly IMediator _mediator;
+    public OrdersController(IMediator mediator)
     {
-        private readonly GetActiveOrders _getActiveOrders;
-        private readonly GetCompletedOrders _getCompletedOrders;
-        private readonly CompleteOrder _completeOrder;
-        public OrdersController(GetActiveOrders getActiveOrders, GetCompletedOrders getCompletedOrders, CompleteOrder completeOrder)
-        {
-            _getActiveOrders = getActiveOrders;
-            _getCompletedOrders = getCompletedOrders;
-            _completeOrder = completeOrder;
-        }
+        _mediator = mediator;
+    }
 
-        public IActionResult Index()
-        {
-            var orders = _getActiveOrders.Get();
-            return View(orders);
-        }
+    public async Task<IActionResult> Index()
+    {
+        var query = new GetActiveOrdersQuery();
+        var orders = await _mediator.Send(query);
+        return View(orders);
+    }
 
-        public IActionResult Complete()
-        {
-            var orders = _getCompletedOrders.Get().OrderByDescending(x => x.CompletedAtUtc);
-            return View(orders);
-        }
+    public async Task<IActionResult> Complete()
+    {
+        var query = new GetCompletedOrderQuery();
+        var orders = await _mediator.Send(query);
+        return View(orders.OrderByDescending(x => x.CompletedAtUtc));
+    }
 
-        [HttpPost]
-        public IActionResult Complete(Guid id)
-        {
-            var command = new CompleteOrderCommand(id);
-            var result = _completeOrder.Handle(command);
-            return result ? Ok() : BadRequest();
-        }
+    [HttpPost]
+    public async Task<IActionResult> Complete(Guid id)
+    {
+        var command = new CompleteOrderCommand(id);
+        var result = await _mediator.Send(command);
+        return result ? Ok() : BadRequest();
     }
 }
