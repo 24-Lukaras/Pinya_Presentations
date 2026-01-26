@@ -1,5 +1,9 @@
+using Pinya_Presentations.Modules.Common;
 using Pinya_Presentations.Modules.Orders;
 using Pinya_Presentations.Modules.Orders.Shared;
+using Pinya_Presentations.Modules.Sales;
+using Pinya_Presentations.Modules.Sales.EventHandlers;
+using Pinya_Presentations.Modules.Sales.Shared;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +13,10 @@ builder.Services.AddScoped<OrdersRepository>();
 builder.Services.AddScoped<CompleteOrder>();
 builder.Services.AddScoped<GetActiveOrders>();
 builder.Services.AddScoped<GetCompletedOrders>();
+builder.Services.AddScoped<EventPublisher>();
+builder.Services.AddScoped<GetSalesAmount>();
+builder.Services.AddSingleton<SalesAmountProvider>();
+builder.Services.AddScoped<IEventHandler, OrderCompletedEventHandler>();
 builder.Services.AddLogging();
 
 var app = builder.Build();

@@ -1,14 +1,17 @@
 ﻿using Pinya_Presentations.Domain;
 using Pinya_Presentations.Modules.Common;
+using Pinya_Presentations.Modules.Orders.Events;
 using Pinya_Presentations.Modules.Orders.Shared;
 
 namespace Pinya_Presentations.Modules.Orders;
 
 public class CompleteOrder : Slice<CompleteOrderCommand, bool>
 {
+    private readonly EventPublisher _events;
     private readonly OrdersRepository _repo;
-    public CompleteOrder(OrdersRepository repo, ILogger<CompleteOrder> logger) : base(logger)
+    public CompleteOrder(EventPublisher events, OrdersRepository repo, ILogger<CompleteOrder> logger) : base(logger)
     {
+        _events = events;
         _repo = repo;
     }
     protected override string? Validate(CompleteOrderCommand input)
@@ -31,10 +34,10 @@ public class CompleteOrder : Slice<CompleteOrderCommand, bool>
 
         entity.Status = OrderStatus.Completed;
         entity.CompletedAtUtc = DateTime.UtcNow;
+        _events.PublishEvent(new OrderCompletedEvent(entity.Items.Sum(x => x.Amount)));
         _repo.Save();
         return (null, true);
     }
-
 }
 
 public record CompleteOrderCommand(Guid Id);
