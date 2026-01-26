@@ -7,14 +7,14 @@ public class OrdersController : Controller
 {
     public IActionResult Index([FromServices] GetActiveOrders handler)
     {
-        var orders = handler.Get();
-        return View(orders);
+        var orders = handler.Handle(new GetActiveOrdersQuery());
+        return View(orders.Result);
     }
 
     public IActionResult Complete([FromServices] GetCompletedOrders handler)
     {
-        var orders = handler.Get();
-        return View(orders.OrderByDescending(x => x.CompletedAtUtc));
+        var orders = handler.Handle(new GetCompletedRecordQuery());
+        return View(orders.Result!.OrderByDescending(x => x.CompletedAtUtc));
     }
 
     [HttpPost]
@@ -22,6 +22,8 @@ public class OrdersController : Controller
     {
         var command = new CompleteOrderCommand(id);
         var result = handler.Handle(command);
-        return result ? Ok() : BadRequest();
+        if (result.Error is not null)
+            return BadRequest();
+        return Ok();
     }
 }

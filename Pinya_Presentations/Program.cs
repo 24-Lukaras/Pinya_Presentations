@@ -9,6 +9,7 @@ builder.Services.AddScoped<OrdersRepository>();
 builder.Services.AddScoped<CompleteOrder>();
 builder.Services.AddScoped<GetActiveOrders>();
 builder.Services.AddScoped<GetCompletedOrders>();
+builder.Services.AddLogging();
 
 var app = builder.Build();
 

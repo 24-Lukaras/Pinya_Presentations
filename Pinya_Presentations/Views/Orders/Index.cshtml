@@ -1,5 +1,8 @@
 ﻿@using Pinya_Presentations.Domain
 @model IEnumerable<Order>
+@{
+    var rows = Model.ToArray();
+}
 
 <a href="/Orders/Complete">Completed orders</a>
 <br />
@@ -10,12 +13,13 @@
         <td><b>Items</b></td>
         <td><b>Complete</b></td>
     </tr>
-    @foreach (var row in Model)
+    @for (int i = 0; i < rows.Length; i++)
     {
+        var row = rows[i];
         <tr>
             <td>@(row.Company)</td>
             <td>@(string.Join("; ", row.Items.Select(x => $"{x.Name}: {x.Amount}")))</td>
-            <td><button onclick="completeOrder('@(row.Id)')">Complete</button></td>
+            <td><button onclick="completeOrder('@(i == 0 ? null : row.Id)')">Complete</button></td>
         </tr>
     }
 </table>

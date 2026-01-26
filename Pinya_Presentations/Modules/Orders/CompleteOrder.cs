@@ -1,29 +1,40 @@
 ﻿using Pinya_Presentations.Domain;
+using Pinya_Presentations.Modules.Common;
 using Pinya_Presentations.Modules.Orders.Shared;
 
 namespace Pinya_Presentations.Modules.Orders;
 
-public class CompleteOrder
+public class CompleteOrder : Slice<CompleteOrderCommand, bool>
 {
     private readonly OrdersRepository _repo;
-    public CompleteOrder(OrdersRepository repo)
+    public CompleteOrder(OrdersRepository repo, ILogger<CompleteOrder> logger) : base(logger)
     {
         _repo = repo;
     }
-
-    public bool Handle(CompleteOrderCommand command)
+    protected override string? Validate(CompleteOrderCommand input)
     {
-        var entity = _repo.GetById(command.Id);
+        if (input.Id == default)
+        {
+            _logger.LogWarning($"Invalid id [{input.Id}] provided to CompleteOrder");
+            return "Invalid id";
+        }
+        return null;
+    }
+
+    protected override (string?, bool) HandleInternal(CompleteOrderCommand input)
+    {
+        var entity = _repo.GetById(input.Id);
         if (entity == null)
-            return false;
+            return ("Order not found", false);
         if (entity.Status != OrderStatus.Active)
-            return false;
+            return ("Order is not active", false);
 
         entity.Status = OrderStatus.Completed;
         entity.CompletedAtUtc = DateTime.UtcNow;
         _repo.Save();
-        return true;
+        return (null, true);
     }
+
 }
 
 public record CompleteOrderCommand(Guid Id);
