@@ -1,0 +1,6 @@
+﻿@model Checkbox
+
+<div class="form-check">
+    @Html.CheckBoxFor(x => x.Checked, new { @class = "form-check-input" })
+    @Html.LabelFor(x => x)
+</div>

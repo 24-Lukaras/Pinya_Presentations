@@ -1,0 +1,6 @@
+﻿@model Toggle
+
+<div class="form-check form-switch">
+    @Html.CheckBoxFor(x => x.Checked, new { @class = "form-check-input", role = "switch" })
+    @Html.LabelFor(x => x)
+</div>

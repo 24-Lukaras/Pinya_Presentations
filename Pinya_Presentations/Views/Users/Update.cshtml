@@ -1,0 +1,21 @@
+﻿@model UserModel
+
+<form method="post" asp-controller="Users" asp-action="Update">
+    @Html.LabelFor(x => x.Username)
+    @Html.TextBoxFor(x => x.Username, new { @class = "form-control" })
+    @Html.EditorFor(x => x.Active)
+    @Html.EditorFor(x => x.IsAdmin)
+    <hr />
+    <div class="d-flex justify-content-around">
+        <button type="submit" class="btn btn-primary">
+            <form-icon kind="Save" />
+            &nbsp;
+            Uložit
+        </button>
+        <button type="reset" class="btn btn-danger">
+            <form-icon kind="Cancel" />
+            &nbsp;
+            Zrušit
+        </button>
+    </div>
+</form>
