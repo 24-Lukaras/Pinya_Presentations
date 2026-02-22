@@ -1,0 +1,20 @@
+﻿<item-card item-name="Rohlíky" amount="20" />
+
+<div class="d-grid gap-2" style="grid-template-columns: repeat(3, auto)">
+    <item-card item-name="Rohlíky" amount="20" />
+    <item-card item-name="Chleba" amount="0" />
+    <item-card item-name="Vepřové" amount="3" />
+</div>
+
+<items-grid columns="6">
+    <item-card item-name="Rohlíky" amount="20" />
+    <item-card item-name="Chleba" amount="0" />
+    <item-card item-name="Vepřové" amount="3" />
+</items-grid>
+
+
+<items-grid columns="5" selector="x => x.GetAllAsync()"></items-grid>
+
+<items-grid columns="5" selector="x => x.GetAvailableAsync()"></items-grid>
+
+<items-grid columns="5" selector="x => x.GetUnavailableAsync()"></items-grid>
