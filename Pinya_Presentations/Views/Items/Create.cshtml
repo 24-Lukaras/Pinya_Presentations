@@ -1,0 +1,17 @@
+﻿@Html.Label("Title", "Title")
+@Html.TextBox("Title", null, new { @class = "form-control" })
+@Html.Label("Amount", "Amount")
+@Html.TextBox("Amount", 0, new { @class = "form-control", type = "number" })
+<hr />
+<div class="d-flex justify-content-around">
+    <a class="btn btn-primary">
+        <form-icon kind="Save" />
+        &nbsp;
+        Uložit
+    </a>
+    <a class="btn btn-danger">
+        <form-icon kind="Cancel" />
+        &nbsp;
+        Zrušit
+    </a>
+</div>

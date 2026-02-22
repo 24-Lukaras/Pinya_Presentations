@@ -2,8 +2,7 @@
 
 namespace Pinya_Presentations.Controllers;
 
-public class ItemsController : Controller
+public class UsersController : Controller
 {
-    public IActionResult Index() => View();
     public IActionResult Create() => View();
 }
