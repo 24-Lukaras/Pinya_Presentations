@@ -14,6 +14,9 @@
     <Reference Include="Kendo.Mvc">
       <HintPath>..\..\..\..\..\..\Resources\DLL\KendoUI_core_23\Kendo.Mvc.dll</HintPath>
     </Reference>
+    <Reference Include="Kendo.Mvc.resources">
+      <HintPath>..\..\..\..\..\..\Resources\DLL\KendoUI_2022\Kendo.Mvc.resources.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>
