@@ -6,4 +6,5 @@ public class ItemsController : Controller
 {
     public IActionResult Index() => View();
     public IActionResult Create() => View();
+    public IActionResult OrdersList() => View();
 }

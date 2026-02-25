@@ -1,0 +1,16 @@
+﻿
+<a class="btn btn-primary" onclick="openWnd()">Otevřit</a>
+
+@(Html.Kendo()
+    .Window()
+    .Defaults("Okno", "wnd", 600)
+    .Content(@<text>
+        <b>test</b>
+    </text>)
+)
+<script>
+    function openWnd()
+    {
+        $("#wnd").data("kendoWindow").open();
+    }
+</script>

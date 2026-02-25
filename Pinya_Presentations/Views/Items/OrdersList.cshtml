@@ -1,0 +1,23 @@
+﻿@using Bogus;
+@{
+    var faker = new Faker<OrderViewModel>()
+        .RuleFor(x => x.Company, f => f.Company.CompanyName())
+        .RuleFor(x => x.CompletedAt, f => f.Date.Recent(30))
+        .UseSeed(1337);
+    var items = faker.Generate(20)
+        .OrderByDescending(x => x.CompletedAt)
+        .ToList();
+}
+
+@(
+    Html.Kendo()
+    .Grid<OrderViewModel>()
+    .Name("orders")
+    .Columns(col =>
+    {
+        col.String(x => x.Company);
+        col.Date(x => x.CompletedAt);
+    })
+    .Filterable(f => f.Mode(GridFilterMode.Row))
+    .BindTo(items)
+)
