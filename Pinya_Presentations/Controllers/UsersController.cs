@@ -10,6 +10,8 @@ public class UsersController : Controller
         Username = "admin",
         IsAdmin = true
     };
+
+    public IActionResult Index() => View();
     public IActionResult Update()
     {
         return View(ToModel(_admin));
