@@ -18,6 +18,8 @@ namespace Pinya_Presentations.Controllers
             return View();
         }
 
+        public IActionResult Columns() => View();
+
         public IActionResult Privacy()
         {
             return View();
