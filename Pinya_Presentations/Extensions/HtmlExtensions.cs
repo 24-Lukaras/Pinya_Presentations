@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using System.Text.Encodings.Web;
 
 namespace Pinya_Presentations;
@@ -19,6 +20,9 @@ public static class HtmlExtensions
 
     public static HtmlLayoutBuilder<T> Layout<T>(this IHtmlHelper<T> html) =>
         new HtmlLayoutBuilder<T>(html);
+
+    public static FilterBuilder<T> Filter<T>(this IHtmlHelper<T> html, string id) =>
+        new FilterBuilder<T>(html, id);
 }
 
 public class HtmlLayoutBuilder<T>(IHtmlHelper<T> html)
@@ -104,3 +108,67 @@ public enum ColumnsLayout
     Double,
     Triple,
 }
+
+
+public class FilterBuilder<T>(IHtmlHelper<T> html, string id) : IHtmlAsyncContent
+{
+    private string _class = "btn-primary";
+    private string _icon = "fa-filter";
+    private string _buttonText = "Filtrovat";
+    HashSet<FilterInput> _filters = [
+        FilterInput.Company,
+        FilterInput.Department,
+    ];
+
+    public FilterBuilder<T> WithText(string text)
+    {
+        _buttonText = text;
+        return this;
+    }
+    public FilterBuilder<T> WithIcon(string icon)
+    {
+        _icon = icon;
+        return this;
+    }
+    public FilterBuilder<T> IncludeFilters(params FilterInput[] filters)
+    {
+        foreach (var f in filters)
+            _filters.Add(f);
+        return this;
+    }
+    public FilterBuilder<T> ExcludeFilters(params FilterInput[] filters)
+    {
+        foreach (var f in filters)
+            _filters.Remove(f);
+        return this;
+    }
+    public FilterBuilder<T> ExcludeAllFilters(params FilterInput[] filters)
+    {
+        _filters.Clear();
+        return this;
+    }
+    public void WriteTo(TextWriter writer, HtmlEncoder encoder)
+    {
+        throw new NotImplementedException();
+    }
+    public async ValueTask WriteToAsync(TextWriter writer) =>
+        await RenderComponent();
+    private Task RenderComponent()
+    {
+        return html.RenderPartialAsync("_Filter", new ViewDataDictionary(html.ViewData)
+        {
+            ["id"] = id,
+            ["cls"] = _class,
+            ["icon"] = _icon,
+            ["buttonText"] = _buttonText,
+            ["filters"] = _filters,
+        });
+    }
+}
+public enum FilterInput
+{
+    Country,
+    Department,
+    Company
+}
+

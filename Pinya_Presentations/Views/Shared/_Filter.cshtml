@@ -1,0 +1,50 @@
+﻿@{
+    string id = (ViewData["id"] as string)!;
+    string cls = (ViewData["cls"] as string)!;
+    string icon = (ViewData["icon"] as string)!;
+    string buttonText = (ViewData["buttonText"] as string)!;
+    HashSet<FilterInput> filters = (ViewData["filters"] as HashSet<FilterInput>)!;
+}
+
+<div class="dropdown filter-dropdown">
+    <button onclick="$(this).siblings('.dropdown-menu').toggleClass('show')" type="button" class="btn @(cls) dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="@(id)" title="@(buttonText)">
+        <i class="fa @(icon)"></i>@Html.Raw(buttonText)
+    </button>
+    <div class="dropdown-menu">
+        <div class="d-flex flex-column gap-2 p-2">
+        @if (filters.Contains(FilterInput.Country))
+        {
+            <label>Země</label>
+            @(Html.Kendo().DropDownList()
+                .Name($"{id}_Country")
+                .OptionLabel("-- Vyberte zemi --")
+                .BindTo(new string[] { "Česká republika", "Slovensko" })
+            )
+            <hr />
+        }
+
+        @if (filters.Contains(FilterInput.Department))
+        {
+            <label>Oddělení</label>
+            @(Html.Kendo().DropDownList()
+                .Name($"{id}_Department")
+                .OptionLabel("-- Vyberte oddělení --")
+                .BindTo(new string[] { "Management", "Marketing", "Development" })
+            )
+            <hr />
+        }
+
+        @if (filters.Contains(FilterInput.Company))
+        {
+            <label>Společnost</label>
+            @(Html.Kendo().DropDownList()
+                .Name($"{id}_Company")
+                .OptionLabel("-- Vyberte společnost --")
+                .BindTo(new string[] { "Pinya", "HelloIT" })
+            )
+            <hr />
+        }
+        
+        </div>
+    </div>
+</div>
