@@ -1,6 +1,19 @@
-﻿@model int?
+﻿@using Microsoft.AspNetCore.Mvc.ModelBinding.Metadata
+@using Pinya_Presentations.Attributes
+@model int?
 @{
-    var items = ViewData["items"] as IEnumerable<SelectListItem>;
+    IEnumerable<SelectListItem> items = Array.Empty<SelectListItem>();
+    var metadata = (ViewData.ModelMetadata as DefaultModelMetadata);
+    if (metadata is not null)
+    {
+        var dataAttribute = metadata.Attributes.Attributes
+            .OfType<Editors.SingleEditorAttribute>()
+            .FirstOrDefault();
+        if (dataAttribute is not null)
+        {
+            items = await dataAttribute.GetListItemsAsync(Context);
+        }
+    }
 }
 
 @(Html.Kendo()

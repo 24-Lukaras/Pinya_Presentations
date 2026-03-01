@@ -1,7 +1,26 @@
-﻿@model int?
+﻿@using Microsoft.AspNetCore.Mvc.ModelBinding.Metadata
+@using Pinya_Presentations.Attributes
+@model int?
+@{
+    int min = 0;
+    int max = 100;
+    var metadata = (ViewData.ModelMetadata as DefaultModelMetadata);
+    if (metadata is not null)
+    {
+        var sliderAttribute = metadata.Attributes.Attributes
+            .OfType<Editors.SliderAttribute>()
+            .FirstOrDefault();
+        if (sliderAttribute is not null)
+        {
+            min = sliderAttribute.Min;
+            max = sliderAttribute.Max;
+        }
+    }
+}
 
 @(Html.Kendo()
     .SliderFor(x => x)
-    .Min(0)
-    .Max(100)
+    .Min(min)
+    .Max(max)
+    .TickPlacement(SliderTickPlacement.None)
 )

@@ -15,12 +15,15 @@
                 @(Html.LabelFor(x => x.Status))
             </div>
             <div class="col-8">
-                @(
-                    Html.EditorFor(x => x.Status, 
-                    new {
-                        items = Html.GetEnumSelectList<TaskState>()
-                    })
-                )
+                @(Html.EditorFor(x => x.Status))
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                @(Html.LabelFor(x => x.Source))
+            </div>
+            <div class="col-8">
+                @(Html.EditorFor(x => x.Source))
             </div>
         </div>
         <div class="row">

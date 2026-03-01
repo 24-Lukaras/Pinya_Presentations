@@ -10,11 +10,15 @@ public class TaskViewModel
     public string Title { get; init; }
 
     [Display(Name = "Stav")]
-    [Editors.SingleEditor]
+    [Editors.EnumDropdown<TaskState>]
     public int Status{ get; init; }
 
+    [Display(Name = "Zdroj")]
+    [Editors.EnumDropdown<TaskSource>]
+    public int Source { get; init; }
+
     [Display(Name = "Dokončeno %")]
-    [Editors.Slider]
+    [Editors.Slider(Min = 10, Max = 50)]
     public int PercentComplete { get; init; }
 }
 public enum TaskState
@@ -30,5 +34,14 @@ public enum TaskState
 
     [Display(Name = "Dokončeno")]
     Complete,
+}
+public enum TaskSource
+{
+    [Display(Name = "Zákazník")]
+    Customer,
+    [Display(Name = "Maintenance")]
+    Maintenance,
+    [Display(Name = "Bugfix")]
+    Bugfix,
 }
 
