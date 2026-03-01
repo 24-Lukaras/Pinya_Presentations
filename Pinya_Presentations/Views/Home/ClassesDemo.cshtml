@@ -1,0 +1,22 @@
+﻿
+
+@(
+    new Table<OrderViewModel>(
+        new OrderViewModel()
+        {
+            Company = "Pinya",
+            CompletedAt = DateTime.Today.AddDays(-1)
+        },
+        new OrderViewModel()
+        {
+            Company = "Hello IT",
+            CompletedAt = DateTime.Today.AddDays(-12)
+        },
+        new OrderViewModel()
+        {
+            Company = "Business Lease",
+            CompletedAt = DateTime.Today.AddDays(-30)
+        }
+    )
+)
+@(new AddButton("console.log(1)"))
