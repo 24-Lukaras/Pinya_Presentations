@@ -1,0 +1,36 @@
+﻿@model TaskViewModel
+
+<form method="post" action="/Tasks/Edit">
+    <div class="d-flex flex-column gap-2">
+        <div class="row">
+            <div class="col-4">
+                @(Html.LabelFor(x => x.Title))
+            </div>
+            <div class="col-8">
+                @(Html.TextBoxFor(x => x.Title, new { @class = "form-control" }))
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                @(Html.LabelFor(x => x.Status))
+            </div>
+            <div class="col-8">
+                @(
+                    Html.EditorFor(x => x.Status, 
+                    new {
+                        items = Html.GetEnumSelectList<TaskState>()
+                    })
+                )
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                @(Html.LabelFor(x => x.PercentComplete))
+            </div>
+            <div class="col-8">
+                @(Html.EditorFor(x => x.PercentComplete))
+            </div>
+        </div>
+        <button class="btn btn-primary">Uložit</button>
+    </div>
+</form>

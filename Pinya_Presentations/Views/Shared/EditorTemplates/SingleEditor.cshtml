@@ -1,0 +1,9 @@
+﻿@model int?
+@{
+    var items = ViewData["items"] as IEnumerable<SelectListItem>;
+}
+
+@(Html.Kendo()
+    .DropDownListFor(x => x)
+    .BindTo(items)
+)
