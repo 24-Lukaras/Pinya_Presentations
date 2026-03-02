@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using Pinya_Presentations.Services.Items;
 using System.ComponentModel.DataAnnotations;
 
 namespace Pinya_Presentations.Attributes;
@@ -45,5 +46,17 @@ public static class Editors
 
         public override Task<IEnumerable<SelectListItem>> GetListItemsAsync(HttpContext ctx) =>
             Task.FromResult(_items);
+    }
+
+    public class OrderItemsDropdown : SingleEditorAttribute
+    {
+        public override async Task<IEnumerable<SelectListItem>> GetListItemsAsync(HttpContext ctx)
+        {
+            var service = ctx.RequestServices.GetService<ItemsRepository>();
+            if (service is null)
+                return Array.Empty<SelectListItem>();
+            var items = await service.GetAvailableAsync();
+            return items.Select(x => new SelectListItem(x.Title, x.Title)).ToArray();
+        }
     }
 }

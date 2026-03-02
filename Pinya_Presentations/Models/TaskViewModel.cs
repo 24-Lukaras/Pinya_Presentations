@@ -17,6 +17,10 @@ public class TaskViewModel
     [Editors.EnumDropdown<TaskSource>]
     public int Source { get; init; }
 
+    [Display(Name = "Položka")]
+    [Editors.OrderItemsDropdown]
+    public int OrderItem { get; init; }
+
     [Display(Name = "Dokončeno %")]
     [Editors.Slider(Min = 10, Max = 50)]
     public int PercentComplete { get; init; }
