@@ -1,3 +1,4 @@
+using Pinya_Presentations;
 using Pinya_Presentations.Modules.Absence.Navigation;
 using Pinya_Presentations.Modules.Employees.Navigation;
 using Pinya_Presentations.Modules.News.Navigation;
@@ -12,15 +13,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<UserContext>();
 
-builder.Services.AddScoped<INavigationItem, AbsenceSettingsNavigationItem>();
-builder.Services.AddScoped<INavigationItem, AllAbsenceNavigationItem>();
-builder.Services.AddScoped<INavigationItem, SubordinatesAbsenceNavigationItem>();
-
-builder.Services.AddScoped<INavigationItem, AddEmployeeNavigationItem>();
-builder.Services.AddScoped<INavigationItem, EmployeesListNavigationItem>();
-builder.Services.AddScoped<INavigationItem, EmployeesInactiveListNavigationItem>();
-
-builder.Services.AddScoped<INavigationItem, NewsNavigationItem>();
+builder.Services.AddNavigationFromAssembly<Program>();
 
 var app = builder.Build();
 
