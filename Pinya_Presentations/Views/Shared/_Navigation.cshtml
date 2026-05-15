@@ -1,0 +1,50 @@
+﻿@using Pinya_Presentations.Services.Navigation
+@inject IEnumerable<INavigationItem> items
+@{
+    var groups = items
+        .Where(x => x.Visible)
+        .OrderBy(x => x.Order)
+        .GroupBy(x => x.Category)
+        .OrderBy(x => x.Key is null)
+        .ThenBy(x => x.Key);
+}
+
+<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+    <div class="container-fluid">
+        <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Pinya_Presentations</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+            <ul class="navbar-nav flex-grow-1">
+                @foreach (var group in groups)
+                {
+                    if (group.Key is null)
+                    {
+                        foreach (var item in group)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" href="@Html.Raw(item.Url)">@item.Title</a>
+                            </li>
+                        }
+                    }
+                    else
+                    {
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">@group.Key</a>
+                            <ul class="dropdown-menu">
+                                @foreach (var item in group)
+                                {
+                                    <li class="nav-item">
+                                        <a class="nav-link text-dark" href="@Html.Raw(item.Url)">@item.Title</a>
+                                    </li>
+                                }
+                            </ul>
+                        </li>
+                    }
+                }
+            </ul>
+        </div>
+    </div>
+</nav>

@@ -1,9 +1,25 @@
+using Pinya_Presentations.Modules.Absence.Navigation;
+using Pinya_Presentations.Modules.Employees.Navigation;
+using Pinya_Presentations.Modules.News.Navigation;
+using Pinya_Presentations.Services.Navigation;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+builder.Services.AddScoped<INavigationItem, AbsenceSettingsNavigationItem>();
+builder.Services.AddScoped<INavigationItem, AllAbsenceNavigationItem>();
+builder.Services.AddScoped<INavigationItem, SubordinatesAbsenceNavigationItem>();
+
+builder.Services.AddScoped<INavigationItem, AddEmployeeNavigationItem>();
+builder.Services.AddScoped<INavigationItem, EmployeesListNavigationItem>();
+builder.Services.AddScoped<INavigationItem, EmployeesInactiveListNavigationItem>();
+
+builder.Services.AddScoped<INavigationItem, NewsNavigationItem>();
+
 var app = builder.Build();
+
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
