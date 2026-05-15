@@ -1,12 +1,16 @@
 using Pinya_Presentations.Modules.Absence.Navigation;
 using Pinya_Presentations.Modules.Employees.Navigation;
 using Pinya_Presentations.Modules.News.Navigation;
+using Pinya_Presentations.Services.Auth;
 using Pinya_Presentations.Services.Navigation;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddScoped<UserContext>();
 
 builder.Services.AddScoped<INavigationItem, AbsenceSettingsNavigationItem>();
 builder.Services.AddScoped<INavigationItem, AllAbsenceNavigationItem>();
