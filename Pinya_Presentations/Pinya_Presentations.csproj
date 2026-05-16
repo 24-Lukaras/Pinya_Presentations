@@ -7,6 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Modules.Absences\Modules.Absences.csproj" />
+    <ProjectReference Include="..\Pinya_Presentations.Shared\Pinya_Presentations.Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Reference Include="Kendo.Mvc">
       <HintPath>..\..\..\..\..\..\Resources\DLL\KendoUI_core_23\Kendo.Mvc.dll</HintPath>
     </Reference>

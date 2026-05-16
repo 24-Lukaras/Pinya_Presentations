@@ -1,19 +1,19 @@
-﻿using Pinya_Presentations.Services.Auth;
-using Pinya_Presentations.Services.Navigation;
+﻿using Pinya_Presentations.Services.Navigation;
+using Pinya_Presentations.Shared.Services.Auth;
 
 namespace Pinya_Presentations.Modules.Absence.Navigation;
 
 public class AbsenceSettingsNavigationItem : INavigationItem
 {
-    private readonly UserContext _ctx;
-    public AbsenceSettingsNavigationItem(UserContext ctx)
+    private readonly IUserContext _ctx;
+    public AbsenceSettingsNavigationItem(IUserContext ctx)
     {
         _ctx = ctx;
     }
 
     public string Title => "Správa typů";
 
-    public string Url => "/Absence/Types";
+    public string Url => "/Absences/Types";
 
     public string? Category => "Absence";
 

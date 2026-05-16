@@ -1,9 +1,7 @@
 using Pinya_Presentations;
-using Pinya_Presentations.Modules.Absence.Navigation;
-using Pinya_Presentations.Modules.Employees.Navigation;
-using Pinya_Presentations.Modules.News.Navigation;
 using Pinya_Presentations.Services.Auth;
-using Pinya_Presentations.Services.Navigation;
+using Modules.Absences;
+using Pinya_Presentations.Shared.Services.Auth;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,9 +9,11 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddHttpContextAccessor();
-builder.Services.AddScoped<UserContext>();
+builder.Services.AddScoped<IUserContext, UserContext>();
 
 builder.Services.AddNavigationFromAssembly<Program>();
+
+builder.Services.AddAbsences();
 
 var app = builder.Build();
 

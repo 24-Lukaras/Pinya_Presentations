@@ -1,12 +1,12 @@
-﻿using Pinya_Presentations.Services.Auth;
-using Pinya_Presentations.Services.Navigation;
+﻿using Pinya_Presentations.Services.Navigation;
+using Pinya_Presentations.Shared.Services.Auth;
 
 namespace Pinya_Presentations.Modules.Employees.Navigation;
 
 public class AddEmployeeNavigationItem : INavigationItem
 {
-    private readonly UserContext _ctx;
-    public AddEmployeeNavigationItem(UserContext ctx)
+    private readonly IUserContext _ctx;
+    public AddEmployeeNavigationItem(IUserContext ctx)
     {
         _ctx = ctx;
     }
