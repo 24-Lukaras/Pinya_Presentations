@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using Pinya_Presentations.Modules.Absence.Navigation;
-using Pinya_Presentations.Services.Navigation;
+using Pinya_Presentations.Shared;
 
 namespace Modules.Absences;
 
@@ -10,9 +9,7 @@ public static class DependencyInjection
     {
         services.AddSingleton<ModuleFeatureMarker>();
 
-        services.AddScoped<INavigationItem, AllAbsenceNavigationItem>();
-        services.AddScoped<INavigationItem, SubordinatesAbsenceNavigationItem>();
-        services.AddScoped<INavigationItem, AbsenceSettingsNavigationItem>();
+        services.AddNavigationFromAssembly<IAssemblyMarker>();
 
         return services;
     }

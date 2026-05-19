@@ -1,6 +1,7 @@
-﻿using Pinya_Presentations.Services.Navigation;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Pinya_Presentations.Services.Navigation;
 
-namespace Pinya_Presentations;
+namespace Pinya_Presentations.Shared;
 
 public static class DependencyInjection
 {

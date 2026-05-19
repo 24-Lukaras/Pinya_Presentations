@@ -1,6 +1,6 @@
-using Pinya_Presentations;
 using Pinya_Presentations.Services.Auth;
 using Modules.Absences;
+using Pinya_Presentations.Shared;
 using Pinya_Presentations.Shared.Services.Auth;
 
 var builder = WebApplication.CreateBuilder(args);
