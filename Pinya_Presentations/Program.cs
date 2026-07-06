@@ -1,7 +1,10 @@
+using Pinya_Presentations.Products;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddProducts(builder.Configuration.GetSection("Products"));
 
 var app = builder.Build();
 

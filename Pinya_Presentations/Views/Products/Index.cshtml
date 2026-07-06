@@ -1,0 +1,19 @@
+﻿@model IReadOnlyCollection<ProductGridModel>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col"><a href="/Products/Add">Přidat</a></th>
+            <th scope="col">Název</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td><a href="/Products/@(item.Id)">Zobrazit</a></td>
+                <td>@(item.Title)</td>
+            </tr>
+        }
+    </tbody>
+</table>

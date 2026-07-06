@@ -1,9 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.36105.23 d17.13
+VisualStudioVersion = 17.13.36105.23
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pinya_Presentations", "Pinya_Presentations\Pinya_Presentations.csproj", "{C7C9326B-3878-4F6E-894F-BD50134652D4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Products", "Products", "{960AB893-3632-44DB-ABDA-8AA0784D822F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Orders", "Orders", "{1A6693E4-B40C-4F81-8800-C35DBFE06242}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pinya_Presentations.Products", "Modules\Products\Pinya_Presentations.Products\Pinya_Presentations.Products.csproj", "{E033FCC0-15F3-4509-95C0-15534BA72CDC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,9 +23,18 @@ Global
 		{C7C9326B-3878-4F6E-894F-BD50134652D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C7C9326B-3878-4F6E-894F-BD50134652D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C7C9326B-3878-4F6E-894F-BD50134652D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E033FCC0-15F3-4509-95C0-15534BA72CDC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E033FCC0-15F3-4509-95C0-15534BA72CDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E033FCC0-15F3-4509-95C0-15534BA72CDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E033FCC0-15F3-4509-95C0-15534BA72CDC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{960AB893-3632-44DB-ABDA-8AA0784D822F} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{1A6693E4-B40C-4F81-8800-C35DBFE06242} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{E033FCC0-15F3-4509-95C0-15534BA72CDC} = {960AB893-3632-44DB-ABDA-8AA0784D822F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E10B6ACE-7360-4062-B542-4F3DF4A18A26}

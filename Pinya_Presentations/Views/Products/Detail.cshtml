@@ -1,0 +1,19 @@
+﻿@model ProductFormModel
+
+<div class="row">
+    <div class="col-sm-6">
+        <h2>Položka</h2>
+        @Html.DisplayFor(x => x.Detail)
+    </div>
+    <div class="col-sm-6">
+        <h2>Přidat množství</h2>
+        <form method="POST" action="/Products/Amount/@(Model.Detail.Id)">
+            <div class="form-group">
+                @Html.LabelFor(x => x.Changes.Amount)
+                @Html.EditorFor(x => x.Changes.Amount)
+                @Html.ValidationMessageFor(x => x.Changes.Amount)
+            </div>
+            <button type="submit" class="btn btn-primary">Uložit</button>
+        </form>
+    </div>
+</div>
