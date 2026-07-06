@@ -6,7 +6,7 @@ namespace Pinya_Presentations.Products.Database;
 
 internal class ProductsDb : DbContext
 {
-    public ProductsDb(DbContextOptions options) : base(options) { }
+    public ProductsDb(DbContextOptions<ProductsDb> options) : base(options) { }
 
     public DbSet<Product> Products => Set<Product>();
 
