@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Pinya_Presentations.Models;
+namespace Pinya_Presentations.Orders.Web.Model;
 
 public class AddOrderModel
 {

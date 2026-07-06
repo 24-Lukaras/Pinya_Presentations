@@ -15,8 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Modules\Orders\Pinya_Presentations.Orders.Application\Pinya_Presentations.Orders.Application.csproj" />
-    <ProjectReference Include="..\Modules\Orders\Pinya_Presentations.Orders.Implementation\Pinya_Presentations.Orders.Implementation.csproj" />
+    <ProjectReference Include="..\Modules\Pinya_Presentations.Orders.Web\Pinya_Presentations.Orders.Web.csproj" />
     <ProjectReference Include="..\Modules\Products\Pinya_Presentations.Products\Pinya_Presentations.Products.csproj" />
   </ItemGroup>
 

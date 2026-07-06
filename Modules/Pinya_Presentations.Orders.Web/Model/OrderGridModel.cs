@@ -1,7 +1,7 @@
 ﻿using Pinya_Presentations.Orders.Application.Dto;
 using Pinya_Presentations.Orders.Domain;
 
-namespace Pinya_Presentations.Models;
+namespace Pinya_Presentations.Orders.Web.Model;
 
 public class OrderGridModel
 {

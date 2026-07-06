@@ -1,14 +1,12 @@
 using Pinya_Presentations.Products;
-using Pinya_Presentations.Orders;
+using Pinya_Presentations.Orders.Web;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddProducts(builder.Configuration.GetSection("Products"));
-builder.Services
-    .AddOrdersApp()
-    .AddOrdersImplementation(builder.Configuration.GetSection("Orders"));
+builder.Services.AddOrders(builder.Configuration.GetSection("Orders"));
 
 var app = builder.Build();
 
@@ -31,6 +29,5 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}")
     .WithStaticAssets();
-
 
 app.Run();

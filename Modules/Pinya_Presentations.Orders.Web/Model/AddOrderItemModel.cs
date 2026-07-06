@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace Pinya_Presentations.Models;
+namespace Pinya_Presentations.Orders.Web.Model;
 
 public class AddOrderItemModel
 {

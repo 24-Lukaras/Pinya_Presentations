@@ -1,8 +1,9 @@
-﻿using Pinya_Presentations.Orders.Domain;
+﻿
+using Pinya_Presentations.Orders.Domain;
 
 namespace Pinya_Presentations;
 
-public static class OrderDisplay
+public static class OrderExtensions
 {
     public static string ToText(this OrderStatus status) =>
         status switch

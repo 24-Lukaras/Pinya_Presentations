@@ -1,10 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
-using Pinya_Presentations.Models;
 using Pinya_Presentations.Orders.Application.Managers;
+using Pinya_Presentations.Orders.Web.Model;
 
-namespace Pinya_Presentations.Controllers;
+namespace Pinya_Presentations.Orders.Web.Controllers;
 
+[Area("Orders")]
 public class OrdersController : Controller
 {
     private readonly OrdersManager _manager;
@@ -13,16 +14,17 @@ public class OrdersController : Controller
         _manager = manager;
     }
 
+    [HttpGet("/[area]")]
     public async Task<IActionResult> Index()
     {
         var orders = await _manager.GetOrdersAsync();
         var model = orders.Select(OrderGridModel.FromDto).ToArray();
         return View(model);
     }
-    [HttpGet("/[controller]/Add")]
+    [HttpGet("/[area]/Add")]
     public IActionResult Add() => View();
 
-    [HttpPost("/[controller]")]
+    [HttpPost("/[area]")]
     public async Task<IActionResult> Add(
         AddOrderModel model)
     {
@@ -37,7 +39,7 @@ public class OrdersController : Controller
         return Redirect($"/Orders/{result.Id}");
     }
 
-    [HttpGet("/[controller]/{id}")]
+    [HttpGet("/[area]/{id}")]
     public async Task<IActionResult> Detail(Guid id)
     {
         var dto = await _manager.GetOrderAsync(id);
@@ -46,14 +48,14 @@ public class OrdersController : Controller
         return View(OrderDetailModel.FromDto(dto));
     }
 
-    [HttpGet("/[controller]/Search")]
+    [HttpGet("/[area]/Search")]
     public async Task<IActionResult> SearchItems(string query)
     {
         var items = await _manager.SearchProducts(query);
         return Json(items);
     }
 
-    [HttpPost("/[controller]/{id}/Item")]
+    [HttpPost("/[area]/{id}/Item")]
     public async Task<IActionResult> AddItem(
         AddOrderItemModel model)
     {
