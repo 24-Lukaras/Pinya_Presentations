@@ -1,0 +1,10 @@
+﻿@model AddOrderModel
+
+<form method="POST" action="/Orders">
+    <div class="form-group">
+        @Html.LabelFor(x => x.Customer)
+        @Html.EditorFor(x => x.Customer)
+        @Html.ValidationMessageFor(x => x.Customer)
+    </div>
+    <button type="submit" class="btn btn-primary">Přidat</button>
+</form>

@@ -1,0 +1,23 @@
+﻿@model IReadOnlyCollection<OrderGridModel>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col"><a href="/Orders/Add">Přidat</a></th>
+            <th scope="col">Zákazník</th>
+            <th scope="col">Stav</th>
+            <th scope="col">Vytvořeno</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td><a href="/Orders/@(item.Id)">Zobrazit</a></td>
+                <td>@(item.Customer)</td>
+                <td>@(item.Status.ToText())</td>
+                <td>@(item.CreatedAtUtc.ToShortDateString())</td>
+            </tr>
+        }
+    </tbody>
+</table>
