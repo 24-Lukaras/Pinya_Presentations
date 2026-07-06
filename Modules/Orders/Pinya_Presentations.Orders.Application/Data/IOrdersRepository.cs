@@ -7,4 +7,5 @@ public interface IOrdersRepository
     public Task<Order?> CreateAsync(Order order);
     public Task<Order?> GetDetailedAsync(Guid id);
     public Task<IEnumerable<Order>> GetAllAsync();
+    public Task SaveChangesAsync();
 }

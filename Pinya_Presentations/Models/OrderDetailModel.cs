@@ -9,6 +9,8 @@ public class OrderDetailModel
 
     public OrderDetailDataModel Data { get; init; }
 
+    public IReadOnlyCollection<OrderItemDetailModel> Items { get; init; }
+
     public static OrderDetailModel FromDto(OrderDto dto) =>
         new OrderDetailModel()
         {
@@ -17,7 +19,13 @@ public class OrderDetailModel
                 Customer = dto.Customer,
                 Status = dto.Status.ToText(),
                 CreatedAtUtc = dto.CreatedAtUtc,
-            }
+            },
+            Items = dto.Items.Select(x => new OrderItemDetailModel()
+            {
+                ProductId = x.ProductId,
+                Title = x.ProductName,
+                Amount = x.Amount,
+            }).ToArray()
         };
 }
 public class OrderDetailDataModel
@@ -30,4 +38,11 @@ public class OrderDetailDataModel
 
     [Display(Name = "Vytvořeno")]
     public DateTime CreatedAtUtc { get; init; }
+}
+
+public class OrderItemDetailModel
+{
+    public Guid ProductId { get; init; }
+    public string Title { get; init; }
+    public int Amount { get; init; }
 }

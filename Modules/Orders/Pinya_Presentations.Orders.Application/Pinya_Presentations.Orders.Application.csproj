@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Products\Pinya_Presentations.Products.Integration\Pinya_Presentations.Products.Integration.csproj" />
     <ProjectReference Include="..\Pinya_Presentations.Orders.Domain\Pinya_Presentations.Orders.Domain.csproj" />
   </ItemGroup>
 

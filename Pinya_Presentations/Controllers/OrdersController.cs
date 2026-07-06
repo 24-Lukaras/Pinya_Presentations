@@ -46,4 +46,19 @@ public class OrdersController : Controller
         return View(OrderDetailModel.FromDto(dto));
     }
 
+    [HttpGet("/[controller]/Search")]
+    public async Task<IActionResult> SearchItems(string query)
+    {
+        var items = await _manager.SearchProducts(query);
+        return Json(items);
+    }
+
+    [HttpPost("/[controller]/{id}/Item")]
+    public async Task<IActionResult> AddItem(
+        AddOrderItemModel model)
+    {
+        var result = await _manager.AddItemAsync(model.Id, model.ProductId, model.Amount);
+        return Redirect($"/Orders/{model.Id}");
+    }
+
 }

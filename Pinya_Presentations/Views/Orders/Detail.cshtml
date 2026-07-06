@@ -4,14 +4,69 @@
 @Html.DisplayFor(x => x.Data)
 <hr />
 <h3>Položky</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Název</th>
+            <th scope="col">Množství</th>
+            <th scope="col">Zrušit</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Items)
+        {
+            <tr>
+                <td>@(item.Title)</td>
+                <td>@(item.Amount)</td>
+                <td><button type="button" class="btn btn-danger">X</button></td>
+            </tr>
+        }
+    </tbody>
+</table>
 <hr />
 <h3>Přidat položku</h3>
 <div class="d-flex flex-row gap-1">
     <span>Název:</span>
     <input id="searchTerm" />
 </div>
-<button class="btn btn-primary">Hledat</button>
+<button class="btn btn-primary" onclick="searchItems()">Hledat</button>
+<table id="foundItemsTable" class="table">
+    <thead>
+        <tr>
+            <th scope="col">Název</th>
+            <th scope="col">Dostupné množství</th>
+            <th scope="col">Přidat</th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
 
 <script>
+
+    function searchItems() {
+        const query = $("#searchTerm").val();
+        if (!query || query.length < 3)
+            return;
+        $.get("/Orders/Search?query=" + query, function (response) {
+            const table = $("#foundItemsTable tbody");
+            table.empty();
+            response.forEach(x => {
+                table.append(`
+                <tr>
+                    <td>${x.title}</td>
+                    <td>${x.availableAmount}</td>
+                    <td>
+                        <form method="POST" action="/Orders/@(Model.Id)/Item">
+                            <input name="ProductId" value="${x.id}" style="display: none;">
+                            <input name="Amount" type="number" value="0">
+                            <button type="submit" class="btn btn-primary">+</button>
+                        </form>
+                    </td>
+                </tr>
+                `);
+            });
+        });
+    }
 
 </script>

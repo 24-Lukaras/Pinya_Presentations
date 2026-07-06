@@ -32,4 +32,19 @@ public class Order
         item.Amount += amount;
         return item;
     }
+    public bool RemoveItem(Guid productId, int amount)
+    {
+        if (amount <= 0)
+            return false;
+
+        var item = _items.FirstOrDefault(x => x.ProductId == productId);
+        if (item is null)
+            return false;
+
+        item.Amount -= amount;
+        if (item.Amount <= 0)
+            _items.Remove(item);
+
+        return true;
+    }
 }

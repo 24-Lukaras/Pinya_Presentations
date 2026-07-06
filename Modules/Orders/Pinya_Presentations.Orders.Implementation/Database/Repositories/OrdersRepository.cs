@@ -26,4 +26,7 @@ internal class OrdersRepository : IOrdersRepository
         _db.Orders
             .Include(x => x.Items)
             .FirstOrDefaultAsync(x => x.Id == id);
+
+    public Task SaveChangesAsync() =>
+        _db.SaveChangesAsync();
 }

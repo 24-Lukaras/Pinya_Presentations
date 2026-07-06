@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pinya_Presentations.Orders.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pinya_Presentations.Orders.Implementation", "Modules\Orders\Pinya_Presentations.Orders.Implementation\Pinya_Presentations.Orders.Implementation.csproj", "{975D4AA1-51BC-4B01-BBEE-EEF49E3F8C90}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pinya_Presentations.Products.Integration", "Modules\Products\Pinya_Presentations.Products.Integration\Pinya_Presentations.Products.Integration.csproj", "{0F2D4AC7-A38E-42DC-A5E3-95BF89AA823F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{975D4AA1-51BC-4B01-BBEE-EEF49E3F8C90}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{975D4AA1-51BC-4B01-BBEE-EEF49E3F8C90}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{975D4AA1-51BC-4B01-BBEE-EEF49E3F8C90}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F2D4AC7-A38E-42DC-A5E3-95BF89AA823F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F2D4AC7-A38E-42DC-A5E3-95BF89AA823F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F2D4AC7-A38E-42DC-A5E3-95BF89AA823F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F2D4AC7-A38E-42DC-A5E3-95BF89AA823F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -56,6 +62,7 @@ Global
 		{3E1549FF-6B68-4C12-9AA0-8C62CFF4D02B} = {1A6693E4-B40C-4F81-8800-C35DBFE06242}
 		{856F7784-18A1-4037-BF7E-62ED8A3BE8D4} = {1A6693E4-B40C-4F81-8800-C35DBFE06242}
 		{975D4AA1-51BC-4B01-BBEE-EEF49E3F8C90} = {1A6693E4-B40C-4F81-8800-C35DBFE06242}
+		{0F2D4AC7-A38E-42DC-A5E3-95BF89AA823F} = {960AB893-3632-44DB-ABDA-8AA0784D822F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E10B6ACE-7360-4062-B542-4F3DF4A18A26}
