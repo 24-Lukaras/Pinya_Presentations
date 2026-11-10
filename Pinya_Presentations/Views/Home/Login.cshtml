@@ -1,0 +1,13 @@
+﻿@using Pinya_Presentations.Services
+@model LoginModel
+@inject TenantsService service
+@{
+    var options = service.Tenants
+        .Select(x => new SelectListItem(x.Title, x.Id.ToString()))
+        .ToArray();
+}
+
+<form method="post" action="/Home/Login" class="col-sm-12 col-md-5 d-flex flex-column gap-3">
+    @Html.DropDownListFor(x => x.TenantId, options, "Select tenant...", new { @class = "form-control" })
+    <button class="btn btn-primary">Login</button>
+</form>

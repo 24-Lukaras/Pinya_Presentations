@@ -1,7 +1,17 @@
+using Pinya_Presentations.Configuration;
+using Pinya_Presentations.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddHttpContextAccessor();
+builder.Services.Configure<ShardsConfiguration>(builder.Configuration);
+builder.Services.AddSingleton<TenantsService>();
+builder.Services.AddScoped<ITenantAccessor, TenantAccessor>();
+builder.Services.AddScoped<AppDbContextFactory>();
+builder.Services.AddScoped<IAppDb, AppDb>();
+builder.Services.AddHostedService<MigrationsFactory>();
 
 var app = builder.Build();
 
